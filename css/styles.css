@@ -12,17 +12,13 @@
 {
     margin: 0;
     padding: 0;
-    /*color: white;*/
     font-family: 'Poppins', sans-serif;
 }
 
 body
 {
     height: 100vh;
-    background: #fefefe;
-   /* display: flex;
-    justify-content: row;
-    align-items: center; */
+    background: #fefefe; 
 }
 
 .navbar
