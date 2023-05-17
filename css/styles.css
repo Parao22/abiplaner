@@ -1,18 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
-:root{
+:root
+{
     --background-color: #f4f7f6;
     --darker-background-color: #8fa0ae;
     --accent-color: #41DCE1;
     --text-color: #181212;
     --navbar-height: 80px;
 }
-*{
+
+*
+{
     margin: 0;
     padding: 0;
     /*color: white;*/
     font-family: 'Poppins', sans-serif;
 }
-body{
+
+body
+{
     height: 100vh;
     background: #fefefe;
    /* display: flex;
@@ -20,58 +25,60 @@ body{
     align-items: center; */
 }
 
-nav
+.navbar
 {
     height: var(--navbar-height);
     background-color: var(--background-color) ;
     display: flex;
-    justify-content: row;
+    justify-content: center;
     align-items: center;
     z-index: 100;
 }
 
-nav .logo{
+nav .logo
+{
     margin-left: 30px;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 35px;
     font-variant: small-caps;
     text-decoration: none;
 }
 
-nav ul{
+nav ul
+{
+    z-index: 100;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
     list-style: none;
 }
 
-nav li{
+nav li
+{
     height: 100%;
     width: 150px;
-    text-align: center;
     position: relative;
 }
 
-nav li:hover{
+nav li:hover
+{
     background: var(--accent-color);
 
 }
 
-nav ul a{
+nav ul li a,
+nav ul li label
+{
     height: 100%;
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
 }
 
-.dropdown{
+.dropdown
+{
     height: min-content;
-    width: 200px;
-    background: var(--background-color);
+    width: 100%;
 
     display: none;
     flex-direction: column;
@@ -80,27 +87,24 @@ nav ul a{
     top: var(--navbar-height);
 }
 
-.dropdown li{
+.dropdown li
+{
     height: 70px;
     width: 100%;
+    background: var(--background-color);
 }
-.dropdown li a{
-    justify-content: flex-start;
-    padding-left: 30px;
-    width: calc(100% - 30px);
-}
-nav li:hover .dropdown{
+
+nav li:hover .dropdown
+{
     display: flex;
+    z-index: 100;
 }
+
 nav input[type= "checkbox"]{
     display: none;
 
 }
-.expandable_li{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 .toggle_button{
     width: 30px;
     height: 23px;
@@ -136,7 +140,9 @@ nav input[type= "checkbox"]{
         height: min-content;
         width: 100%;
     }
-    nav ul a{
+    nav ul li a,
+    nav ul li label
+    {
         padding: 30px 0;
     }
     .expandable_li{
