@@ -1,180 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400&display=swap');
-:root
-{
-    --background-color: #f4f7f6;
-    --darker-background-color: #8fa0ae;
-    --accent-color: #41DCE1;
-    --text-color: #181212;
-    --navbar-height: 80px;
-}
-
-*
-{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-}
-
-body
-{
-    height: 100vh;
-    background: #fefefe; 
-}
-
-.navbar
-{
-    height: var(--navbar-height);
-    background-color: var(--background-color) ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-}
-
-nav .logo
-{
-    margin-left: 30px;
-    font-size: 35px;
-    font-variant: small-caps;
+.container {
+    max-width: 960px;
+  }
+  
+  /*
+   * Custom translucent site header
+   */
+  
+  .site-header {
+    background-color: rgba(0, 0, 0, .85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+  .site-header a {
+    color: #8e8e8e;
+    transition: color .15s ease-in-out;
+  }
+  .site-header a:hover {
+    color: #fff;
     text-decoration: none;
-}
-
-nav ul
-{
-    z-index: 100;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    list-style: none;
-}
-
-nav li
-{
-    height: 100%;
-    width: 150px;
-    position: relative;
-}
-
-nav li:hover
-{
-    background: var(--accent-color);
-
-}
-
-nav ul li a,
-nav ul li label
-{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-}
-
-.dropdown
-{
-    height: min-content;
-    width: 100%;
-
-    display: none;
-    flex-direction: column;
+  }
+  
+  /*
+   * Dummy devices (replace them with your own or something else entirely!)
+   */
+  
+  
+  .bg-header {
+    background-image: url(../img/schuldorf_sporthalle.jpg);
+    background-size: cover;
+    background-position-y: bottom;
+  }
+  
+  .text-container
+  {
+    background-color: rgba(255, 255, 255, .5);
+  }
+  
+  .product-device::before {
     position: absolute;
-    left: 0;
-    top: var(--navbar-height);
-}
-
-.dropdown li
-{
-    height: 70px;
-    width: 100%;
-    background: var(--background-color);
-}
-
-nav li:hover .dropdown
-{
-    display: flex;
-    z-index: 100;
-}
-
-nav input[type= "checkbox"]{
-    display: none;
-
-}
-
-.toggle_button{
-    width: 30px;
-    height: 23px;
-
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.bar{
-    height: 4px;
-    width: 100%;
-    background: var(--text-color);
-    border-radius: 100px;
-}
-@media(max-width: 850px){
-    .toggle_button{
-        display: flex;
+    top: 10%;
+    right: 10px;
+    bottom: 10%;
+    left: 10px;
+    content: "";
+    background-color: rgba(255, 255, 255, .1);
+    border-radius: 5px;
+  }
+  
+  
+  
+  /*
+   * Extra utilities
+   */
+  
+  .flex-equal > * {
+    flex: 1;
+  }
+  @media (min-width: 768px) {
+    .flex-md-equal > * {
+      flex: 1;
     }
-    nav ul{
-        height: min-content;
-        width: 100%;
-        background: var(--background-color);
-
-        display: none;
-        position: absolute;
-        top: var(--navbar-height);
-    }
-    nav li {
-        height: min-content;
-        width: 100%;
-    }
-    nav ul li a,
-    nav ul li label
-    {
-        padding: 30px 0;
-    }
-    .expandable_li{
-        display: block;
-
-    }
-    .expandable_li label{
-        padding: 30px 0;
-        cursor: pointer;
-        display: block;
-    }
-    .expandable_li:hover .dropdown{
-        display: none;
-
-    }
-    .expandable_li input[type="checkbox"]:checked ~ .dropdown {
-        display: block;
-    }
-    .dropdown{
-        /*position: static;*/
-        width: 100%;
-    }
-    .dropdown li{
-        padding: 0;
-        display: block;
-        /*position: static;*/
-        background: var(--darker-background-color);
-
-    }
-    .dropdown li a{
-        width: 100%;
-        padding: 0;
-        justify-content: center;
-    }
-    #toggle_button:checked ~ul{
-        display: block;
-    }
-}
+  }
+  
 
