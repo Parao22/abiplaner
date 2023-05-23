@@ -30,6 +30,17 @@
     background-size: cover;
     background-position-y: bottom;
   }
+  .laso a
+  {
+    text-decoration: none;
+    color: black;
+  }
+  .laso a:hover
+  {
+    font-size:88px;
+    transition: all 500ms;
+    font-size-adjust: 20px;
+  }
   
   .text-container
   {
