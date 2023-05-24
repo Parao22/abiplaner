@@ -40,7 +40,7 @@
   text-decoration: none;
   color: black;
 }
-.laso a:hover
+.laso div:hover a
 {
   font-size:88px;
   transition: all 500ms;
