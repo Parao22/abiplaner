@@ -26,6 +26,7 @@
 
 
 .bg-header {
+  filter: brightness(80%);
   background-image: url(../img/schuldorf_sporthalle.jpg);
   background-size: cover;
   background-position-y: bottom;
@@ -46,11 +47,15 @@
   transition: all 500ms;
   font-size-adjust: 20px;
 }
+.brighter-span
+{
+  filter: brightness(150);
+}
 
-.text-container
+/*.text-container
 {
   background-color: rgba(255, 255, 255, .5);
-}
+}*/
 
 .product-device::before {
   position: absolute;
@@ -98,5 +103,4 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
 
