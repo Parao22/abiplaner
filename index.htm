@@ -99,7 +99,7 @@
 <body>
     <header class="site-header sticky-top py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" aria-label="Product">
+            <a class="py-2" href="index.html" aria-label="Product">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
                     viewBox="0 0 24 24">
@@ -111,19 +111,29 @@
                 </svg>
             </a>
             <a class="py-2 d-none d-md-inline-block" href="#">Home</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Suchen</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Firma</a>
+            <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="py-2 d-none d-md-inline-block" style="color: #8e8e8e;">Suchen</span>
+              </button>
+            <a class="py-2 d-none d-md-inline-block" href="pages/firma.html">Firma</a>
             <a class="py-2 d-none d-md-inline-block" href="pages/login.html">Login</a>
 
         </nav>
+        <div class="navbar-collapse collapse" id="navbarsExample06">
+            <form role="search">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+              </form>
+            </div>
     </header>
+   
 
     <main>
+       
+
         <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-header rounded">
 
             <div class="col-md-5 p-lg-5 mx-auto my-5 text-container rounded brighter-span">
                 <h1 class="display-4 fw-normal">Lé Abi Planer</h1>
-                <p class="lead fw-normal">Willkomen zum Kurswahl simulator</p>
+                <p class="lead fw-normal">Willkomen zum Kurswahlsimulator</p>
                 <a class="btn btn-outline-secondary" href="pages/login.html">Login</a>
             </div>
 
