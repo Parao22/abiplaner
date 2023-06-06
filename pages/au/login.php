@@ -3,7 +3,7 @@
         'cookie_lifetime' => 86400,
     ]);
     $email = $_POST['email'];
-    $password = $_POST['password'];
+    $userPassword = $_POST['password'];
 
     
 $servername = "localhost"; 
@@ -21,12 +21,12 @@ if ($conn->connect_error) {
 } 
 
 $result = $conn->query("SELECT password FROM user where email ='". $email."'"); 
-
+$hashed_Userpassword = password_hash($userPassword,  PASSWORD_DEFAULT);
 // Check ob es Ergebnisse in der Abfrage gab
 if ($result->num_rows > 0) {
     //Nehme das erste Ergebnis aus der SQL Abfrage
     $hashed_password = $result->fetch_assoc();
-    if ( password_verify($password, $hashed_password) ) {
+    if ( password_verify($hashed_Userpassword, "$hashed_password") ) {
     // Passwort war richtig.
         if( password_needs_rehash($hashed_password, PASSWORD_DEFAULT) ) {
             /*  Der Hashalgorithmus des gespeicherten Passworts genügt nicht mehr
@@ -34,21 +34,25 @@ if ($result->num_rows > 0) {
             *  neu gehasht und anstelle des alten Hashes in der Datenbank gespeichert
             *  werden; hier wird es nur in der entsprechenden Variable geändert:
             */
-            $hashed_password = password_hash($password,  PASSWORD_DEFAULT);
+            $hashed_password = password_hash($hashed_Userpassword,  PASSWORD_DEFAULT);
             // ToDo: neu gehashtes Passwort in DB speichern!
         }
 
         //Session für Nutzer erstellen
-        $_SESSION['user_mail'] = $email;
+        $_SESSION['user_mail'] = $email; 
 
         //Weiterleitung
         echo "LOGIN ERFOLGREICH";
     } else {
     // Passwort war falsch.
     // Zurück mit Fehlermeldung
+    //header('Location: ../login.html');
+    //exit();
     echo "PASSWORT FALSCH";
     }
 }else{
     // EMail war falsch.
+    //header('Location: ../login.html');
+    //exit();
     echo "EMAIL FALSCH";
 }
