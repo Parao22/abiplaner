@@ -21,13 +21,13 @@ if ($conn->connect_error) {
 } 
 
 $result = $conn->query("SELECT password FROM user where email ='". $email."'"); 
-$hashed_Userpassword = password_hash($userPassword,  PASSWORD_DEFAULT);
+
 // Check ob es Ergebnisse in der Abfrage gab
 if ($result->num_rows > 0) {
     //Nehme das erste Ergebnis aus der SQL Abfrage
-    $hashed_password = $result->fetch_assoc();
-    print_r($hashed_password);
-    if ( password_verify($hashed_Userpassword, $hashed_password) ) {
+    $hashed_password = $result->fetch_assoc()['password'];
+    
+    if ( password_verify($userPassword, $hashed_password) ) {
     // Passwort war richtig.
         if( password_needs_rehash($hashed_password, PASSWORD_DEFAULT) ) {
             /*  Der Hashalgorithmus des gespeicherten Passworts genügt nicht mehr
@@ -35,7 +35,7 @@ if ($result->num_rows > 0) {
             *  neu gehasht und anstelle des alten Hashes in der Datenbank gespeichert
             *  werden; hier wird es nur in der entsprechenden Variable geändert:
             */
-            $hashed_password = password_hash($hashed_Userpassword,  PASSWORD_DEFAULT);
+            $hashed_password = password_hash($userPassword,  PASSWORD_DEFAULT);
             // ToDo: neu gehashtes Passwort in DB speichern!
         }
 
@@ -47,8 +47,8 @@ if ($result->num_rows > 0) {
     } else {
     // Passwort war falsch.
     // Zurück mit Fehlermeldung
-    //header('Location: ../login.html');
-    //exit();
+    header('Location: ../login.php?password=false');
+    exit();
     echo "PASSWORT FALSCH";
     }
 }else{
