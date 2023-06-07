@@ -1,3 +1,5 @@
+
+
 <html lang="en" data-bs-theme="light">
 
 <head>
@@ -132,6 +134,11 @@
                 <div class="form-floating">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                     <label for="floatingPassword">Password</label>
+                    <?php
+                        if ($_GET['password'] === 'false'){
+                            echo "<p>Passwort ist falsch</p>";
+                        }
+                    ?>
                 </div>
 
                 <div class="checkbox mb-3">
@@ -139,13 +146,10 @@
                         <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div>
-               
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
             </form>
-            <div>
-             <a href="sign-up.html" style="text-decoration: underline;">Ein Account herstellen.</a>
-            </div>
-            <p class="mt-5 mb-3 text-body-secondary">© 2023</p>
+           
         </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

@@ -26,7 +26,8 @@ $hashed_Userpassword = password_hash($userPassword,  PASSWORD_DEFAULT);
 if ($result->num_rows > 0) {
     //Nehme das erste Ergebnis aus der SQL Abfrage
     $hashed_password = $result->fetch_assoc();
-    if ( password_verify($hashed_Userpassword, "$hashed_password") ) {
+    print_r($hashed_password);
+    if ( password_verify($hashed_Userpassword, $hashed_password) ) {
     // Passwort war richtig.
         if( password_needs_rehash($hashed_password, PASSWORD_DEFAULT) ) {
             /*  Der Hashalgorithmus des gespeicherten Passworts genügt nicht mehr
