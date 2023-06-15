@@ -113,7 +113,7 @@ if ($subjects_db->num_rows > 0) {
                           </select>
                     </div>
                     <div class="mb-3">
-                        <label for="FS2" class="form-label">1.Fremdsprache</label>
+                        <label for="FS2" class="form-label">2.Fremdsprache*</label>
                         <select class="form-select" id="FS2" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
@@ -125,7 +125,7 @@ if ($subjects_db->num_rows > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="kuMuDsp" class="form-label">DSP, Kunst oder Musik</label>
-                        <select class="form-select" id="kuMuDsp" aria-label="Default select example">
+                        <select class="form-select" id="kuMuDsp" aria-label="Default select example" onchange="test(this)">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
                                 foreach($subjects as $subject_name) {
@@ -142,14 +142,44 @@ if ($subjects_db->num_rows > 0) {
                       <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <input type="submit" value="Submit">
                   </form>
             </div>
         </div>
+
     </main>
 
-</body>
+
+    <script>
+        function test(input) {
+            let value = input.options[input.selectedIndex].text;
+            
+            if(value != "Powi") {
+                let div = document.createElement('div');
+                div.id = 'Powi';
+                
+                let label = document.createElement('label');
+                label.innerHTML = "Weiterer GK";
+                
+                let powiInput = document.createElement('input');
+                powiInput.type = 'text';
+                powiInput.disabled = true;
+                powiInput.value = "Powi";
+                
+                let form = document.getElementById('form');
+                div.append(label);
+                div.append(powiInput);
+                form.append(div);
+            }
+            if(value == "Powi") {  
+                document.getElementById('Powi').remove();
+            }
+        }
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
     crossorigin="anonymous"></script>
 
+</body>
 </html>
