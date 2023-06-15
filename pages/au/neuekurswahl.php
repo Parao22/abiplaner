@@ -1,5 +1,34 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_mail'])){
+    header('Location: ../login.html');
+    exit();
+}
+
+$servername = "localhost"; 
+$username = "abiplaner"; 
+$password = "Q1ShlM_abiplaner"; 
+$dbname = "abiplaner"; 
+// Create connection 
+
+$conn = new mysqli($servername, $username, $password, $dbname); 
+
+if ($conn->connect_error) { 
+    die("Connection failed: " . $conn->connect_error); 
+} 
+
+$subjects_db = $conn->query("SELECT * FROM subject");
+$subjects = [];
+// Check ob es Ergebnisse in der Abfrage gab
+if ($subjects_db->num_rows > 0) {
+    while($subject = $subjects_db->fetch_assoc()){
+        $subjects[] = $subject['name'];
+    }
+}
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="UTF-8">
@@ -54,75 +83,60 @@
                         <label for="LK1" class="form-label">Leistungskurs 1</label>
                         <select class="form-select" id="LK1" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="LK1_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
                           </select>
                     </div>
                     <div class="mb-3">
-                        <label for="LK1" class="form-label">Leistungskurs 2</label>
-                        <select class="form-select" id="LK1" aria-label="Default select example">
+                        <label for="LK2" class="form-label">Leistungskurs 2</label>
+                        <select class="form-select" id="LK2" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="LK2_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
                           </select>
                     </div>
                     <div class="mb-3">
-                        <label for="LK1" class="form-label">1. Fremdsprache</label>
-                        <select class="form-select" id="LK1" aria-label="Default select example">
+                        <label for="FS1" class="form-label">1.Fremdsprache</label>
+                        <select class="form-select" id="FS1" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="FS1_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
                           </select>
                     </div>
                     <div class="mb-3">
-                      <label for="exampleInputPassword1" class="form-label">Deutsch</label>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                          LK
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                          GK
-                        </label>
-                      </div>
+                        <label for="FS2" class="form-label">1.Fremdsprache</label>
+                        <select class="form-select" id="FS2" aria-label="Default select example">
+                            <option selected>Bitte wähle eine Option</option>
+                            <?php
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="FS2_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
+                          </select>
                     </div>
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">1.Fremdsprache</label>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                          <label class="form-check-label" for="flexRadioDefault1">
-                            LK
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                          <label class="form-check-label" for="flexRadioDefault2">
-                            GK
-                          </label>
-                        </div>
-                       
-                      </div>
-                      <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">2. Fremdsprache</label>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                          <label class="form-check-label" for="flexRadioDefault1">
-                            LK
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                          <label class="form-check-label" for="flexRadioDefault2">
-                            GK
-                          </label>
-                        </div>
-                      </div>
+                        <label for="kuMuDsp" class="form-label">DSP, Kunst oder Musik</label>
+                        <select class="form-select" id="kuMuDsp" aria-label="Default select example">
+                            <option selected>Bitte wähle eine Option</option>
+                            <?php
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="KuMuDsp_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
+                          </select>
+                    </div>
+                  
+
+               
                     <div class="mb-3 form-check">
                       <input type="checkbox" class="form-check-input" id="exampleCheck1">
                       <label class="form-check-label" for="exampleCheck1">Check me out</label>
