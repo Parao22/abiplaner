@@ -1,3 +1,9 @@
+a
+{
+  text-decoration: none;
+  color: black;
+}
+
 .container {
   max-width: 960px;
 }
@@ -19,7 +25,18 @@
   color: #fff;
   text-decoration: none;
 }
-
+.naso p
+{
+  color: red;
+}
+.maso 
+{
+color: #8e8e8e;
+}
+.maso:hover
+{
+  color: #fff;
+}
 /*
  * Dummy devices (replace them with your own or something else entirely!)
  */
@@ -31,22 +48,26 @@
   background-size: cover;
   background-position-y: bottom;
 }
-.bg-body
+
+/*.bg-body
 {
   background-image: url(../img/bildschirm-test.jpg);
   background-size: cover;
-}  
-.laso a
-{
-  text-decoration: none;
-  color: black;
 }
-.laso div:hover a 
+*/
+.laso:hover span
 {
-  font-size:88px;
+  font-size: calc(1.625rem + 4.5vw);
+  font-weight: 300;
+  line-height: 1.2;
   transition: all 500ms;
-  font-size-adjust: 20px;
 }
+
+.laso span
+{
+  transition: all 500ms;
+}
+
 .brighter-span
 {
   filter: brightness(150);
@@ -103,4 +124,3 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
