@@ -67,7 +67,14 @@ color: #8e8e8e;
 {
   transition: all 500ms;
 }
+.saso:hover
+ { 
+  color: black; 
+  background-color: var(--bs-btn-hover-bg); 
+  border-color: var(--bs-btn-hover-border-color);        
+} 
 
+ 
 .brighter-span
 {
   filter: brightness(150);
