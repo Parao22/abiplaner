@@ -81,7 +81,7 @@ if ($subjects_db->num_rows > 0) {
                 <form>
                     <div class="mb-3">
                         <label for="LK1" class="form-label">Leistungskurs 1</label>
-                        <select class="form-select" id="LK1" aria-label="Default select example">
+                        <select class="form-select" id="LK1" onchange="higherlevel1(this)" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
                                 foreach($subjects as $subject_name) {
@@ -106,6 +106,15 @@ if ($subjects_db->num_rows > 0) {
                         <select class="form-select" id="FS1" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
+                              $subjects_db = $conn->query("SELECT * FROM subject where name ='Englisch'");
+                              $subjects = [];
+                              // Check ob es Ergebnisse in der Abfrage gab
+                              if ($subjects_db->num_rows > 0) {
+                                  while($subject = $subjects_db->fetch_assoc()){
+                                      $subjects[] = $subject['name'];
+                                  }
+                                }
+
                                 foreach($subjects as $subject_name) {
                                    echo '<option value="FS1_'.$subject_name.'">'.$subject_name.'</option>';
                                 }
@@ -128,13 +137,59 @@ if ($subjects_db->num_rows > 0) {
                         <select class="form-select" id="kuMuDsp" aria-label="Default select example" onchange="test(this)">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
+                             $subjects_db = $conn->query("SELECT * FROM subject where name in ('DSP','Kunst','Musik')");
+                             $subjects = [];
+                             // Check ob es Ergebnisse in der Abfrage gab
+                             if ($subjects_db->num_rows > 0) {
+                                 while($subject = $subjects_db->fetch_assoc()){
+                                     $subjects[] = $subject['name'];
+                                 }
+                               }
                                 foreach($subjects as $subject_name) {
                                    echo '<option value="KuMuDsp_'.$subject_name.'">'.$subject_name.'</option>';
                                 }
                             ?>
                           </select>
                     </div>
-                  
+                    <div class="mb-3">
+                        <label for="Na1" class="form-label">1. Naturwissenschaft</label>
+                        <select class="form-select" id="Na1" aria-label="Default select example" onchange="test(this)">
+                            <option selected>Bitte wähle eine Option</option>
+                            <?php
+                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name != 'Mathe'");
+                             $subjects = [];
+                             // Check ob es Ergebnisse in der Abfrage gab
+                             if ($subjects_db->num_rows > 0) {
+                                 while($subject = $subjects_db->fetch_assoc()){
+                                     $subjects[] = $subject['name'];
+                                 }
+                               }
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="KuMuDsp_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
+                          </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Na2" class="form-label">2. Naturwissenschaft</label>
+                        <select class="form-select" id="Na2" aria-label="Default select example" onchange="test(this)">
+                            <option selected>Bitte wähle eine Option</option>
+                            <?php
+                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name != 'Mathe'");
+                             $subjects = [];
+                             // Check ob es Ergebnisse in der Abfrage gab
+                             if ($subjects_db->num_rows > 0) {
+                                 while($subject = $subjects_db->fetch_assoc()){
+                                     $subjects[] = $subject['name'];
+                                 }
+                               }
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="KuMuDsp_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
+                          </select>
+                    </div>
+
 
                
                     <div class="mb-3 form-check">
@@ -151,6 +206,11 @@ if ($subjects_db->num_rows > 0) {
 
 
     <script>
+        function higherlevel1(select) {
+            const higherlevel1 = select.options[input.selectedIndex].text;
+            const higherlevel2 = document.gerElementByID('LK2');
+            
+        }
         function test(input) {
             let value = input.options[input.selectedIndex].text;
             
