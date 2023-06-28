@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <html lang="de" data-bs-theme="light">
 
 <head>
@@ -100,7 +103,7 @@
     <header class="site-header sticky-top py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
             <div class="d-none d-md-flex">
-                <a class="py-2" href="index.html" aria-label="Product">
+                <a class="py-2" href="index.htm" aria-label="Product">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
                         viewBox="0 0 24 24">
@@ -141,13 +144,19 @@
                     </form> 
                   </div>
             </div>
-            <a class="py-2 d-none d-md-inline-block" href="#">Home</a>
+            <a class="py-2 d-none d-md-inline-block" href="index.htm">Home</a>
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="py-2 d-none d-md-inline-block" style="color: #8e8e8e;">Suchen</span>
               </button>
             <a class="py-2 d-none d-md-inline-block" href="pages/firma.html">Team</a>
-            <a class="py-2 d-none d-md-inline-block" href="pages/login.html">Login</a>
-
+            <?php 
+            if(isset($_SESSION['user_mail'])){
+                echo '<a class="py-2 d-none d-md-inline-block" href="pages/auth/kurswahl.php">Kurswahl</a>';
+                echo '<a class="py-2 d-none d-md-inline-block" href="pages/auth/signout.php">Logout</a>';
+            }else{
+                echo '<a class="py-2 d-none d-md-inline-block" href="pages/login.html">Login</a>';
+            }
+        ?>
         </nav>
         <div class="navbar-collapse collapse" id="navbarsExample06">
             <form role="search">
@@ -165,7 +174,7 @@
             <div class="col-md-5 p-lg-5 mx-auto my-5 text-container rounded brighter-span">
                 <h1 class="display-4 fw-normal">Lé Abi Planer</h1>
                 <p class="lead fw-normal">Willkomen zum Kurswahlsimulator</p>
-                <a class="btn btn-outline-secondary" href="pages/login.html">Login</a>
+                <a class="saso btn  btn-outline-secondary" href="pages/login.html">Login</a>
             </div>
 
         </div>
@@ -177,7 +186,7 @@
                 <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
                     <div class="my-3 p-3">
                         <span class="display-5">Tutorial</span>
-                        <p class="lead">Wie geht das11?</p>
+                        <p class="lead">Wie geht das?</p>
                     </div>
                     <div class="bg-body shadow-sm mx-auto"
                     style="width: 100%; height: auto; border-radius: 21px 21px 0 0;">
@@ -249,7 +258,7 @@
                 <h5>About</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="link-secondary" href="#">Team</a></li>
-                    <li><a class="link-secondary" href="#">Locations</a></li>
+                    <li><a class="link-secondary" href="https://goo.gl/maps/Knbxy21odVmWV1P29">Locations</a></li>
                     <li><a class="link-secondary" href="#">Privacy</a></li>
                     <li><a class="link-secondary" href="#">Terms</a></li>
                 </ul>
