@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 
 $result = $conn->query("SELECT password FROM user where email ='". $email."'"); 
 
-// Check ob es Ergebnisse in der Abfrage gab
+// Check ob es Erg  ebnisse in der Abfrage gab
 if ($result->num_rows > 0) {
     //Nehme das erste Ergebnis aus der SQL Abfrage
     $hashed_password = $result->fetch_assoc()['password'];

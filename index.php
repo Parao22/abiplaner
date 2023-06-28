@@ -103,7 +103,7 @@
     <header class="site-header sticky-top py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
             <div class="d-none d-md-flex">
-                <a class="py-2" href="index.htm" aria-label="Product">
+                <a class="py-2" href="index.php" aria-label="Product">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
                         viewBox="0 0 24 24">
@@ -130,25 +130,31 @@
                 <div class="navbar-collapse collapse" id="mobilenav">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.htm">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="pages/firma.html">Team</a>
+                        <a class="nav-link active" aria-current="page" href="pages/firma.php">Team</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="pages/login.html">Login</a>
-                      </li>
+                      
+                      <?php 
+            if(isset($_SESSION['user_mail'])){
+                echo '<li class="nav-item"> <a class="py-2 d-none d-md-inline-block" href="pages/auth/signout.php">Logout</a> </li>';
+            }else{
+                echo '<li class="nav-item"> <a class="py-2 d-none d-md-inline-block" href="pages/login.html">Login</a>  </li>';
+            }
+        ?>
+                     
                     </ul>
-                    <form role="search">
+                   <!-- <form role="search">
                       <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    </form> 
+                    </form> -->
                   </div>
             </div>
-            <a class="py-2 d-none d-md-inline-block" href="index.htm">Home</a>
+            <a class="py-2 d-none d-md-inline-block" href="index.php">Home</a>
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="py-2 d-none d-md-inline-block" style="color: #8e8e8e;">Suchen</span>
               </button>
-            <a class="py-2 d-none d-md-inline-block" href="pages/firma.html">Team</a>
+            <a class="py-2 d-none d-md-inline-block" href="pages/firma.php">Team</a>
             <?php 
             if(isset($_SESSION['user_mail'])){
                 echo '<a class="py-2 d-none d-md-inline-block" href="pages/auth/kurswahl.php">Kurswahl</a>';
@@ -174,7 +180,13 @@
             <div class="col-md-5 p-lg-5 mx-auto my-5 text-container rounded brighter-span">
                 <h1 class="display-4 fw-normal">Lé Abi Planer</h1>
                 <p class="lead fw-normal">Willkomen zum Kurswahlsimulator</p>
-                <a class="saso btn  btn-outline-secondary" href="pages/login.html">Login</a>
+                <?php 
+            if(isset($_SESSION['user_mail'])){
+                echo '<a class="btn  btn-outline-secondary" href="pages/auth/signout.php">Logout</a>';
+            }else{
+                echo ' <a class="btn  btn-outline-secondary" href="pages/login.html">Login</a>';
+            }
+        ?>
             </div>
 
         </div>
@@ -182,7 +194,7 @@
 
 
         <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-            <a class="laso" href="pages/tutorial.html">
+            <a class="laso" href="pages/tutorial.php">
                 <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
                     <div class="my-3 p-3">
                         <span class="display-5">Tutorial</span>
@@ -194,7 +206,7 @@
                 </div>
                 </div>
             </a>
-            <a class="laso" href="pages/info.html">
+            <a class="laso" href="pages/info.php">
                 <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
                     <div class="my-3 py-3">
                         <span class="display-5">Kurswahl</span>
@@ -291,4 +303,3 @@
 </body>
 
 </html>
-
