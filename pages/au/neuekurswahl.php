@@ -48,23 +48,42 @@ if ($subjects_db->num_rows > 0) {
     </head>
 
 <body>
-    <header class="site-header sticky-top py-1">
+<header class="site-header sticky-top py-1">
         <nav class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" aria-label="Product">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+            <div class="d-none d-md-flex">
+                <a class="py-2" href="kurswahl.php" aria-label="Product">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
+                        viewBox="0 0 24 24">
+                        <title>Product</title>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path
+                            d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+            <div class="d-md-none text-center">
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mobilenav" aria-controls="mobilenav" aria-expanded="false" aria-label="Toggle mobile navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none" stroke="currentColor"
                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img"
                     viewBox="0 0 24 24">
-                    <title>Product</title>
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path
-                        d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94">
-                    </path>
-                </svg>
-            </a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Home</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Suchen</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Firma</a>
-            <a class="py-2 d-none d-md-inline-block" href="login.html">Login</a>
+                        <title>Product</title>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path
+                            d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94">
+                        </path>
+                    </svg>
+                </button>
+                <div class="navbar-collapse collapse" id="mobilenav">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="kurswahl.php">Simulator Beenden</a>
+                      </li>
+                    </ul>
+                </div>
+            </div>
+            <a class="py-2 d-none d-md-inline-block" href="kurswahl.php">Simulator Beenden</a>
         </nav>
     </header>
     <main>
