@@ -17,7 +17,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error); 
 } 
 
-$subjects_db = $conn->query("SELECT * FROM subject");
+$subjects_db = $conn->query("SELECT * FROM subject where name not in('Ethik','DSP')");
 $subjects = [];
 // Check ob es Ergebnisse in der Abfrage gab
 if ($subjects_db->num_rows > 0) {
@@ -156,7 +156,7 @@ if ($subjects_db->num_rows > 0) {
                         <select class="form-select" id="Na1" aria-label="Default select example" onchange="test(this)">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
-                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name != 'Mathe'");
+                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name not in('Mathe','Informatik')");
                              $subjects = [];
                              // Check ob es Ergebnisse in der Abfrage gab
                              if ($subjects_db->num_rows > 0) {
@@ -165,7 +165,7 @@ if ($subjects_db->num_rows > 0) {
                                  }
                                }
                                 foreach($subjects as $subject_name) {
-                                   echo '<option value="KuMuDsp_'.$subject_name.'">'.$subject_name.'</option>';
+                                   echo '<option value="Na1_'.$subject_name.'">'.$subject_name.'</option>';
                                 }
                             ?>
                           </select>
@@ -175,7 +175,7 @@ if ($subjects_db->num_rows > 0) {
                         <select class="form-select" id="Na2" aria-label="Default select example" onchange="test(this)">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
-                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name != 'Mathe'");
+                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name not in('Mathe','Informatik')");
                              $subjects = [];
                              // Check ob es Ergebnisse in der Abfrage gab
                              if ($subjects_db->num_rows > 0) {
@@ -184,7 +184,26 @@ if ($subjects_db->num_rows > 0) {
                                  }
                                }
                                 foreach($subjects as $subject_name) {
-                                   echo '<option value="KuMuDsp_'.$subject_name.'">'.$subject_name.'</option>';
+                                   echo '<option value="Na2_'.$subject_name.'">'.$subject_name.'</option>';
+                                }
+                            ?>
+                          </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Wa1" class="form-label">auch möglich</label>
+                        <select class="form-select" id="Wa1" aria-label="Default select example" onchange="test(this)">
+                            <option selected>Bitte wähle eine Option</option>
+                            <?php
+                             $subjects_db = $conn->query("SELECT * FROM subject where name in ('Informatik','Erdkunde')");
+                             $subjects = [];
+                             // Check ob es Ergebnisse in der Abfrage gab
+                             if ($subjects_db->num_rows > 0) {
+                                 while($subject = $subjects_db->fetch_assoc()){
+                                     $subjects[] = $subject['name'];
+                                 }
+                               }
+                                foreach($subjects as $subject_name) {
+                                   echo '<option value="Wa1_'.$subject_name.'">'.$subject_name.'</option>';
                                 }
                             ?>
                           </select>
