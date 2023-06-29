@@ -138,16 +138,17 @@
                       
                       <?php 
             if(isset($_SESSION['user_mail'])){
-                echo '<li class="nav-item"> <a class="py-2 d-none d-md-inline-block" href="pages/auth/signout.php">Logout</a> </li>';
+                echo '<li class="nav-item"> <a class="nav-link active" aria-current="page" href="pages/auth/kurswahl.php">Kurswahl</a>';
+                echo '<li class="nav-item"> <a class="nav-link active" aria-current="page" href="pages/auth/signout.php">Logout</a> </li>';
             }else{
-                echo '<li class="nav-item"> <a class="py-2 d-none d-md-inline-block" href="pages/login.html">Login</a>  </li>';
+                echo '<li class="nav-item"> <a class="nav-link active" aria-current="page" href="pages/login.html">Login</a>  </li>';
             }
         ?>
                      
                     </ul>
-                   <!-- <form role="search">
+                   <form role="search">
                       <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                    </form> -->
+                    </form> 
                   </div>
             </div>
             <a class="py-2 d-none d-md-inline-block" href="index.php">Home</a>
