@@ -245,9 +245,12 @@ if ($subjects_db->num_rows > 0) {
 
     <script>
         function higherlevel1(select) {
-            const higherlevel1 = select.options[input.selectedIndex].text;
-            const higherlevel2 = document.gerElementByID('LK2');
-            
+            console.log(select);
+            const higherlevel1 = select.options[select.selectedIndex].text;
+            console.log(higherlevel1);
+            fetch("getOptions.php?selected="+higherlevel1).then(
+                x => x.json().then(json => console.log(json))
+            )
         }
         function test(input) {
             let value = input.options[input.selectedIndex].text;
