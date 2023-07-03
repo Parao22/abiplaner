@@ -97,27 +97,22 @@ if ($subjects_db->num_rows > 0) {
         </div>
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
-                <form>
+                <form action="addreview.php" method="POST">
                     <div class="mb-3">
                         <label for="LK1" class="form-label">Leistungskurs 1</label>
-                        <select class="form-select" id="LK1" onchange="higherlevel1(this)" aria-label="Default select example">
+                        <select class="form-select" id="LK1" onchange="higherlevel1(this)" aria-label="Default select example" name="LK[]">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
                                 foreach($subjects as $subject_name) {
-                                   echo '<option value="LK1_'.$subject_name.'">'.$subject_name.'</option>';
+                                   echo '<option value='.$subject_name.'>'.$subject_name.'</option>';
                                 }
                             ?>
                           </select>
                     </div>
                     <div class="mb-3">
                         <label for="LK2" class="form-label">Leistungskurs 2</label>
-                        <select class="form-select" id="LK2" aria-label="Default select example">
+                        <select class="form-select" id="LK2" aria-label="Default select example" name="LK[]">
                             <option selected>Bitte wähle eine Option</option>
-                            <?php
-                                foreach($subjects as $subject_name) {
-                                   echo '<option value="LK2_'.$subject_name.'">'.$subject_name.'</option>';
-                                }
-                            ?>
                           </select>
                     </div>
                     <div class="mb-3">
@@ -153,7 +148,7 @@ if ($subjects_db->num_rows > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="kuMuDsp" class="form-label">DSP, Kunst oder Musik</label>
-                        <select class="form-select" id="kuMuDsp" aria-label="Default select example" onchange="test(this)">
+                        <select class="form-select" id="kuMuDsp" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
                              $subjects_db = $conn->query("SELECT * FROM subject where name in ('DSP','Kunst','Musik')");
@@ -172,7 +167,7 @@ if ($subjects_db->num_rows > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="Na1" class="form-label">1. Naturwissenschaft</label>
-                        <select class="form-select" id="Na1" aria-label="Default select example" onchange="test(this)">
+                        <select class="form-select" id="Na1" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
                              $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name not in('Mathe','Informatik')");
@@ -191,7 +186,7 @@ if ($subjects_db->num_rows > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="Na2" class="form-label">2. Naturwissenschaft</label>
-                        <select class="form-select" id="Na2" aria-label="Default select example" onchange="test(this)">
+                        <select class="form-select" id="Na2" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
                              $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name not in('Mathe','Informatik')");
@@ -210,7 +205,7 @@ if ($subjects_db->num_rows > 0) {
                     </div>
                     <div class="mb-3">
                         <label for="Wa1" class="form-label">auch möglich</label>
-                        <select class="form-select" id="Wa1" aria-label="Default select example" onchange="test(this)">
+                        <select class="form-select" id="Wa1" aria-label="Default select example">
                             <option selected>Bitte wähle eine Option</option>
                             <?php
                              $subjects_db = $conn->query("SELECT * FROM subject where name in ('Informatik','Erdkunde')");
@@ -230,12 +225,8 @@ if ($subjects_db->num_rows > 0) {
 
 
                
-                    <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
+                    
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <input type="submit" value="Submit">
                   </form>
             </div>
         </div>
@@ -245,37 +236,42 @@ if ($subjects_db->num_rows > 0) {
 
     <script>
         function higherlevel1(select) {
-            console.log(select);
-            const higherlevel1 = select.options[select.selectedIndex].text;
-            console.log(higherlevel1);
-            fetch("getOptions.php?selected="+higherlevel1).then(
-                x => x.json().then(json => console.log(json))
+            //Bestimme den Namen des ausgewählten ersten LKs
+            const lk1 = select.options[select.selectedIndex].text;
+
+            //Bestimme das Selektfeld für den zweiten LK
+            const lk2 = document.getElementById('LK2');
+            //Lösche alle Optionen aus dem select
+            for (var i=lk2.options.length; i--;) {
+                lk2.removeChild(lk2.options[i]);
+            }
+
+            //Erstelle eine neue leere Auswahlmöglichkeit
+            let option = document.createElement('option');
+            //Gebe ihr den Text "Bitte wähle eine Option"
+            option.innerHTML = "Bitte wähle eine Option";
+            //und füge sie dem LK2 Select hinzu
+            lk2.appendChild(option);
+
+            //Hole dir die Daten vom Server
+            //Alle Fächernamen ohne dem selektierten ersten Fach
+            fetch("getOptions.php?selected="+lk1).then(
+                response => response.json().then(data => {
+                    data.forEach(subject => {
+                        //Erstelle eine neue leere Option
+                        option = document.createElement('option');
+                        //Gebe ihr als Auswahltext den Fachnamen
+                        option.innerHTML = subject;
+                        //Ebenso als Wert der Option
+                        option.value = subject;
+                        //und füge es dem LK 2 select hinzu
+                        lk2.appendChild(option);
+                    }
+                        )
+                })
             )
         }
-        function test(input) {
-            let value = input.options[input.selectedIndex].text;
-            
-            if(value != "Powi") {
-                let div = document.createElement('div');
-                div.id = 'Powi';
-                
-                let label = document.createElement('label');
-                label.innerHTML = "Weiterer GK";
-                
-                let powiInput = document.createElement('input');
-                powiInput.type = 'text';
-                powiInput.disabled = true;
-                powiInput.value = "Powi";
-                
-                let form = document.getElementById('form');
-                div.append(label);
-                div.append(powiInput);
-                form.append(div);
-            }
-            if(value == "Powi") {  
-                document.getElementById('Powi').remove();
-            }
-        }
+       
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
