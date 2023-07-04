@@ -15,4 +15,5 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) { 
     die("Connection failed: " . $conn->connect_error); 
 } 
-$result = $conn->query("INSERT INTO Kurswahl() user where email ='". $email."'"); 
+$sql = "INSERT INTO kurswahl (name, date_created, comment, choosen) VALUES ('$lk1','NULL','NULL','NULL')"; 
+echo "<p>'Erfolg'</p>";
