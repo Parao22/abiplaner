@@ -131,13 +131,16 @@
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                     <label for="floatingInput">Email address</label>
                 </div>
-                <div class="form-floating">
+                <div class="form-floating naso">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                     <label for="floatingPassword">Password</label>
                     <?php
                         if ($_GET['password'] === 'false'){
                             echo "<p>Passwort ist falsch</p>";
+                        }else if($_GET['password'] === 'email'){
+                            echo "<p>Email ist falsch</p>";       
                         }
+                        
                     ?>
                 </div>
 
@@ -147,7 +150,10 @@
                     </label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
+                <div>
+             <a href="sign-up.html" style="text-decoration: underline;">Ein Account herstellen.</a>
+            </div>
+                <p class="mt-5 mb-3 text-body-secondary">©  2023</p>
             </form>
            
         </main>
