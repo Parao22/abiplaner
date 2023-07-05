@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['user_mail'])){
+if(!isset($_SESSION['user_name'])){
     header('Location: ../login.html');
     exit();
 }
@@ -119,117 +119,6 @@ if ($subjects_db->num_rows > 0) {
                             <option selected>Bitte wähle eine Option</option>
                           </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="FS1" class="form-label">1.Fremdsprache</label>
-                        <select class="form-select" id="FS1" aria-label="Default select example">
-                            <option selected>Bitte wähle eine Option</option>
-                            <?php
-                              $subjects_db = $conn->query("SELECT * FROM subject where name ='Englisch'");
-                              $subjects = [];
-                              // Check ob es Ergebnisse in der Abfrage gab
-                              if ($subjects_db->num_rows > 0) {
-                                  while($subject = $subjects_db->fetch_assoc()){
-                                      $subjects[] = $subject['name'];
-                                  }
-                                }
-
-                                foreach($subjects as $subject_name) {
-                                   echo '<option value="FS1_'.$subject_name.'">'.$subject_name.'</option>';
-                                }
-                            ?>
-                          </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="FS2" class="form-label">2.Fremdsprache*</label>
-                        <select class="form-select" id="FS2" aria-label="Default select example">
-                            <option selected>Bitte wähle eine Option</option>
-                            <?php
-                                foreach($subjects as $subject_name) {
-                                   echo '<option value="FS2_'.$subject_name.'">'.$subject_name.'</option>';
-                                }
-                            ?>
-                          </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="kuMuDsp" class="form-label">DSP, Kunst oder Musik</label>
-                        <select class="form-select" id="kuMuDsp" aria-label="Default select example">
-                            <option selected>Bitte wähle eine Option</option>
-                            <?php
-                             $subjects_db = $conn->query("SELECT * FROM subject where name in ('DSP','Kunst','Musik')");
-                             $subjects = [];
-                             // Check ob es Ergebnisse in der Abfrage gab
-                             if ($subjects_db->num_rows > 0) {
-                                 while($subject = $subjects_db->fetch_assoc()){
-                                     $subjects[] = $subject['name'];
-                                 }
-                               }
-                                foreach($subjects as $subject_name) {
-                                   echo '<option value="KuMuDsp_'.$subject_name.'">'.$subject_name.'</option>';
-                                }
-                            ?>
-                          </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Na1" class="form-label">1. Naturwissenschaft</label>
-                        <select class="form-select" id="Na1" aria-label="Default select example">
-                            <option selected>Bitte wähle eine Option</option>
-                            <?php
-                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name not in('Mathe','Informatik')");
-                             $subjects = [];
-                             // Check ob es Ergebnisse in der Abfrage gab
-                             if ($subjects_db->num_rows > 0) {
-                                 while($subject = $subjects_db->fetch_assoc()){
-                                     $subjects[] = $subject['name'];
-                                 }
-                               }
-                                foreach($subjects as $subject_name) {
-                                   echo '<option value="Na1_'.$subject_name.'">'.$subject_name.'</option>';
-                                }
-                            ?>
-                          </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Na2" class="form-label">2. Naturwissenschaft</label>
-                        <select class="form-select" id="Na2" aria-label="Default select example">
-                            <option selected>Bitte wähle eine Option</option>
-                            <?php
-                             $subjects_db = $conn->query("SELECT * FROM subject where subject_council = 'FB 3' and name not in('Mathe','Informatik')");
-                             $subjects = [];
-                             // Check ob es Ergebnisse in der Abfrage gab
-                             if ($subjects_db->num_rows > 0) {
-                                 while($subject = $subjects_db->fetch_assoc()){
-                                     $subjects[] = $subject['name'];
-                                 }
-                               }
-                                foreach($subjects as $subject_name) {
-                                   echo '<option value="Na2_'.$subject_name.'">'.$subject_name.'</option>';
-                                }
-                            ?>
-                          </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Wa1" class="form-label">auch möglich</label>
-                        <select class="form-select" id="Wa1" aria-label="Default select example">
-                            <option selected>Bitte wähle eine Option</option>
-                            <?php
-                             $subjects_db = $conn->query("SELECT * FROM subject where name in ('Informatik','Erdkunde')");
-                             $subjects = [];
-                             // Check ob es Ergebnisse in der Abfrage gab
-                             if ($subjects_db->num_rows > 0) {
-                                 while($subject = $subjects_db->fetch_assoc()){
-                                     $subjects[] = $subject['name'];
-                                 }
-                               }
-                                foreach($subjects as $subject_name) {
-                                   echo '<option value="Wa1_'.$subject_name.'">'.$subject_name.'</option>';
-                                }
-                            ?>
-                          </select>
-                    </div>
-
-
-               
-                    
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
             </div>
