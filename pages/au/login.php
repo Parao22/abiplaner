@@ -49,11 +49,9 @@ if ($result->num_rows > 0) {
     // Zurück mit Fehlermeldung
     header('Location: ../login.php?password=false');
     exit();
-    echo "PASSWORT FALSCH";
     }
 }else{
     // EMail war falsch.
-    //header('Location: ../login.html');
-    //exit();
-    echo "EMAIL FALSCH";
+    header('Location: ../login.php?username=1');
+    exit();
 }
