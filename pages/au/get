@@ -13,11 +13,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error); 
 } 
 
+$selected = []
+$selected[] = $_GET['selected'];
+
+if($_GET['selected'] === 'Powi'){
+    $selected[] = 'Geschi';
+    $selected[] = 'Musik';
+    $selected[] = 'DSP';
+}
+
+
 $result = $conn->query("SELECT name from subject where name not in('".$_GET['selected']."')");
-print_r($_GET); 
-print_r($result->fetch_assoc()); 
+
 $subject_names = [];
 while ($subject = $result->fetch_assoc())
     $subject_names[] = $subject['name'];
 
-return json_encode($subject_names);
+echo json_encode($subject_names);
