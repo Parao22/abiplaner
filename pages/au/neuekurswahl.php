@@ -98,10 +98,19 @@ if ($subjects_db->num_rows > 0) {
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
                 <form action="addreview.php" method="POST">
-                <div class="mb-3">  
-                <label for="fname">Kurswahlname:</label> 
-               <input type="text" id="Kursname" name="Kursname">
-               </div>
+                <div class="mb-3">
+                    <label for="kuname" class="form-label">Kursname</label>
+                    <input type="text" class="form-control" id="kuname" name="Kursname">
+                    <?php
+                        if(isset($_GET['name'])){
+                            echo '
+                            <div class="d-block invalid-feedback">
+                                Please choose a username. 
+                            </div>
+                            ';
+                        }
+                    ?>
+                </div>
                     <div class="mb-3">
                         <label for="LK1" class="form-label">Leistungskurs 1</label>
                         <select class="form-select" id="LK1" onchange="higherlevel1(this)" aria-label="Default select example" name="LK[]">
