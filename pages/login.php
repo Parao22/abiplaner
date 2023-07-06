@@ -135,10 +135,10 @@
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                     <label for="floatingPassword">Password</label>
                     <?php
-                        if ($_GET['password'] === 'false'){
+                        if (isset($_GET['password'])){
                             echo "<p>Passwort ist falsch</p>";
-                        }else if($_GET['password'] === 'email'){
-                            echo "<p>Email ist falsch</p>";       
+                        }else if(isset($_GET['username']){
+                            echo "<p>Nutzername ist falsch</p>";       
                         }
                         
                     ?>
