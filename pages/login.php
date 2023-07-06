@@ -130,17 +130,27 @@
                 <div class="form-floating">
                     <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                     <label for="floatingInput">Email address</label>
+                    <?php
+                        if(isset($_GET['username'])){
+                            echo '
+                            <div class="d-block invalid-feedback">
+                                Falscher Nutzername
+                            </div>
+                            ';
+                        }
+                    ?>
                 </div>
                 <div class="form-floating naso">
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                     <label for="floatingPassword">Password</label>
                     <?php
-                        if (isset($_GET['password'])){
-                            echo "<p>Passwort ist falsch</p>";
-                        }else if(isset($_GET['username']){
-                            echo "<p>Nutzername ist falsch</p>";       
+                        if(isset($_GET['password'])){
+                            echo '
+                            <div class="d-block invalid-feedback">
+                                Falsches Passwort 
+                            </div>
+                            ';
                         }
-                        
                     ?>
                 </div>
 
