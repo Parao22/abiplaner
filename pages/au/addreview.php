@@ -4,8 +4,7 @@ if(!isset($_SESSION['user_name'])){
     header('Location: ../login.html');
     exit();
 }
-print_r($_POST);
-print_r($_SESSION['user_name']);
+
 $ku_name = $_POST['Kursname'];
 $lk1 = $_POST['LK'][0];
 $lk2 = $_POST['LK'][1];
@@ -23,6 +22,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) { 
     die("Connection failed: " . $conn->connect_error); 
 } 
+
+$result = $conn->query("SELECT * FROM kurswahl WHERE name = '{$ku_name}'");
+if($result->num_rows > 0){
+    header('LOCATION: neuekurswahl.php?name=1');
+    exit();
+}
 
 $conn->query("INSERT INTO kurswahl (name) VALUES ('{$ku_name}')");
 $conn->query("INSERT INTO erstellen (username,kurswahl_name) VALUES ('{$us_name}','{$ku_name}')");
