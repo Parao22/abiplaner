@@ -13,17 +13,25 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error); 
 } 
 
-$selected = []
-$selected[] = $_GET['selected'];
+$selected = [];
+$notAllowed = ['Powi', 'Geschi', 'Musik', 'Kunst','Sport','Informatik','Erdkunde'];
 
-if($_GET['selected'] === 'Powi'){
+if(in_array($_GET['selected'], $notAllowed)){
+    $selected[] = 'Powi';
     $selected[] = 'Geschi';
     $selected[] = 'Musik';
+    $selected[] = 'DSP';
+    $selected[] = 'Kunst';
+    $selected[] = 'Sport';
+    $selected[] = 'Informatik';
+    $selected[] = 'Erdkunde';
+}else{
+    $selected[] = $_GET['selected'];
     $selected[] = 'DSP';
 }
 
 
-$result = $conn->query("SELECT name from subject where name not in('".$_GET['selected']."')");
+$result = $conn->query("SELECT name from subject where name not in('".implode("','", $selected)."')");
 
 $subject_names = [];
 while ($subject = $result->fetch_assoc())
